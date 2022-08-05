@@ -1,0 +1,84 @@
+print("**********************VIP MESS MEAL RATE CALCULATOR********************")
+
+total_messmember = int(input("Enter The Total Number of Mess Members:"))
+
+list1_giventk = []
+list2_takenmeal = []
+list3_names = []
+list4_eachMealCost = []
+list5_eachMembersRemainingTk = []
+list6_compare = []
+list7_eachWaterCost = []
+list8_totalMealWaterCost = []
+total = 0
+totalmeal = 0
+EachMealCost = 0
+TotalMealCost = 0
+compare = 0
+
+print("Enter Mess Members Names :")
+
+for i in range(total_messmember):
+    MessMemberName = str(input())
+    list3_names.append(MessMemberName)
+print("Mess Members Are:", list3_names)
+
+print("Enter Given Taka of Each Member Serially:")
+
+for i in range(total_messmember):
+    giventk = int(input(" "))
+    list1_giventk.append(giventk)
+
+print("Each Mess Members Given Taka to Manager Are:", list1_giventk)
+for i, j in zip(list3_names, list1_giventk):
+    print(str(i), " has given ", str(j), "tk")
+
+for i in range(total_messmember):
+    total = total + list1_giventk[i]
+print("total taka given:", total)
+
+remaining = int(input("Enter MonthEnd Remaining Taka to Manager:"))
+bazarcost = total - remaining
+
+print("Total Bazar Cost:", bazarcost)
+
+print(" Enter Taken Meal of Each Members Serially:")
+for j in range(total_messmember):
+    takenmeal = int(input(" "))
+    list2_takenmeal.append(takenmeal)
+print("Each Members Taken Meals  Are :", list2_takenmeal)
+
+for k, l in zip(list3_names, list2_takenmeal):
+    print(str(k), " Has Taken Total ", str(l), " Meals ")
+
+for j in range(0, len(list2_takenmeal)):
+    totalmeal = totalmeal + list2_takenmeal[j]
+print("Total Number of  Meals:", totalmeal)
+
+mealrate = bazarcost / totalmeal
+
+print("Meal Rate=", mealrate)
+
+for i in range(0, len(list2_takenmeal)):
+    EachMealCost = mealrate * list2_takenmeal[i]
+    list4_eachMealCost.append(EachMealCost)
+print("Each Members Total Meal Cost Are:", list4_eachMealCost)
+
+for k, l in zip(list3_names, list4_eachMealCost):
+    print(str(k), "'s Total Meal Cost= ", str(l), " tk ")
+
+for j in range(0, len(list4_eachMealCost)):
+    TotalMealCost = TotalMealCost + list4_eachMealCost[j]
+print("Total Meal Cost:", TotalMealCost)
+
+for n in range(0,len(list1_giventk)):
+    list5_eachMembersRemainingTk.append(list1_giventk[n] - list4_eachMealCost[n])
+print("Each Member Will Recieve(+) OR Give(-) Money:",list5_eachMembersRemainingTk)
+
+for i in range(0,len(list4_eachMealCost)):
+     if list1_giventk[i] > list4_eachMealCost[i]:
+         print(list3_names[i]," will recieve",list5_eachMembersRemainingTk[i],"tk")
+     elif list1_giventk[i] < list4_eachMealCost[i]:
+         print(list3_names[i],"will give ",abs(list5_eachMembersRemainingTk[i]),"tk")
+     else:
+         print(list3_names[i],"is clear")
